@@ -1,0 +1,582 @@
+\documentclass[a4paper]{article}
+
+
+%%%%%%%%%% EIT PACKAGE INPUTS %%%%%%%%%%%%%
+%
+% Do not remove the following packages!
+%
+% General  instructions / Best Practice Rules:
+% ------------------------------------
+% * Use \cref{<label>} only, no \ref !
+% * For abbreviations, always use the Glossaries package and \gls{<abbrv>} or \glspl{<abbrv>} ! --> ensures that every abbreviation is introduced correctly
+% * Mark open points with \todo{ <Name of assigned person>: ... }
+% * Only commit after checking that it compiles. 
+% * Only one sentence per line!
+% * Use active voice whenever possible! ("we have investigated" instead of "it was investigated")
+% * Use past progressive instead of simple past! ("Banks et al. have shown" instead of "Banks et al. showed")
+
+%Venn-Diagramm
+\usepackage{tikz}
+
+% set up unicode input
+\usepackage[utf8]{inputenc}
+
+% set 8-bit font enconding
+% see: http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[T1]{fontenc}
+
+% PTSans - corporate design font of the University of Kaiserslautern
+\usepackage{paratype}
+\renewcommand{\familydefault}{\sfdefault}
+
+% background image for title page
+\usepackage{wallpaper}
+
+%breaking URLs
+\usepackage{url}
+
+%todo command
+\usepackage{color}
+\definecolor{darkred}{rgb}{.6,0,0}
+\newcommand{\todo}[1]{{\bf \color{darkred}TODO: [{#1}]}}
+
+%% math packages
+\usepackage{amsmath}
+\usepackage{amsfonts, amssymb}
+\usepackage{graphicx}
+
+% get correct links for url in bibliography
+\usepackage[hidelinks]{hyperref}
+
+% balance columns on last page
+\usepackage{flushend}
+
+%% glossaries package for list of abbreviations and list of symbols
+%\usepackage{datatool} % package needed by glossaries
+%\usepackage[acronym]{glossaries} % *after* hyperref
+%\newglossary[symlog]{symbol}{symi}{symo}{Symbols}
+%\makeglossaries
+%\glstoctrue
+%\input{../../paper.library/abbreviations_symbols/abbreviations}
+%\input{../../paper.library/abbreviations_symbols/symbols_finance}
+
+% enable bold math with \pmb{...}
+\usepackage{bm}
+
+% nice subfigures (a) and (b)
+\usepackage[caption=false]{subfig}
+
+% get nice fractions as \nicefrac{1}{4}
+\usepackage{nicefrac}
+ 
+ % get compact lists with compactitem
+\usepackage{paralist}
+
+% get nice tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\newcommand{\minitab}[2][c]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}% raggedleft column X
+\usepackage[detect-all]{siunitx}
+\usepackage{threeparttable} % tables with footnotes
+\usepackage{makecell}
+\usepackage{stfloats} % allow double column table at the bottom
+
+\usepackage{graphicx}   %Graphiken einbinden 
+\usepackage[dot, phantomtext]{dashundergaps} 
+\usepackage{enumitem} 
+\usepackage{wasysym} 
+\usepackage{multicol}   %Mehrere Spalten 
+\usepackage{lmodern} 
+\usepackage{xcolor} 
+
+
+% clever references that automatically add Figure, Equation, Table, etc.
+\usepackage[capitalize]{cleveref}
+
+
+%%%%%%%%%% END OF EIT PACKAGE INPUTS %%%%%%%%%%%%%
+
+
+
+%%%%%%%%%% EIT CONTROLS %%%%%%%%%%%%%
+
+% Non-breakable hyphen
+\newcommand{\hyph}{\mbox{-}}
+
+% Assert value of reference [when used in images]
+% Usage: \assertRefEqual{label}{expected number}
+\newcommand{\assertRefEqual}[2]{%
+	\begingroup
+		\ifnum \pdfstrcmp{\ref{#1}}{#2\hbox{}} = 0
+			\relax
+		\else
+			\errmessage{Reference #1 expected to be #2, but got \ref{#1}}
+		\fi
+	\endgroup}
+
+% disable ToDos for peer review here!
+%\renewcommand{\todo}[1]{}
+
+% fix line spacings here if necessary
+%\renewcommand{\baselinestretch}{0.96}
+
+% correct bad hyphenation here
+\hyphenation{net-works semi-conduc-tor quad-ra-ture mat-ches trans-form meth-od}
+
+% enable glossary generation
+%\makeglossaries
+
+% header and footer
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+
+%%%%%%%%%% END OF EIT CONTROLS %%%%%%%%%%%%%
+
+
+\begin{document}
+
+% header info here
+\ihead{GAWT}
+\chead{Zusatzaufgabe}
+\ohead{01.01.2017}
+% footer info here
+\ifoot[Wintersemester 16/17]{TU Kaiserslautern}
+\cfoot{WS 16/17}
+\ofoot[Seite \pagemark]{Seite \pagemark}
+
+% include EIT background image on first page
+\ThisCenterWallPaper{1.0}{images/background-eit.pdf}
+
+% title + author
+\title{\LARGE Grundlagen und Anwendungen der Wahrscheinlichkeitstheorie} 
+\author{\Large Lösung der Zusatzaufgaben Litz}
+\date{01.01.2017}
+\maketitle
+
+
+\begin{description}
+
+\item[3.1]
+				
+         $P(A)= \frac{\text{günstige Elementarereignisse}}{\text{mögliche Ereignisse}}= \frac{18}{36				}= 0.5$\\
+         $P(B)= \frac{18}{36}= 0.5$\\
+         $P(C)= \frac{11}{36}$\\
+         $P(D)= 1$\\
+
+\item[3.2] 
+
+         \begin{itemize}
+            \item[a)] Fehlerwahrscheinlichkeit $\leq 10\%$\\
+											\\
+											$v=\frac{\text{Dauer Grünphase}}{\text{Dauer Ampelzyklus}}$ mit $\epsilon= \pm 0.1$\\
+											\\
+											gesucht: $N\textsubscript{min}$\\
+											\\
+											\textbf{Hinweis: Lit\_15a (3.7)}\\
+											\\
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}} \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
+											
+											$0.1 \leq \frac{1}{4\cdot N\cdot (0.1)\textsuperscript{2}}$ \\
+											
+											$N\textsubscript{min} \leq \frac{1}{4\cdot 0.1\cdot (0.1)\textsuperscript{2}}$										\\
+											
+											$N\textsubscript{min} \leq 250$\\
+											
+											Ab 250 Tagen ist die Aussage möglich!\\
+											
+            \item[b)] Gegeben: N=40, Wahrscheinlichkeit: $90\%$ \\
+					
+											Gesucht: $\epsilon$\\
+											
+											Anwendung Bernoulli-Ungleichung:\\
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)= 90\%$\\
+											
+											Problem: nicht direkt anwendbar!
+											über Gegenereignis:
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)=1-P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=90\%$\\
+											
+											$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=1-90\% = 0.1$\\
+											
+											$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}} = 0.1$\\
+											
+											$\Leftrightarrow \epsilon\textsuperscript{2}= \frac{10}{4N}= \frac{10}{4\cdot40}=\frac{1}{16}$\\
+											
+											$\epsilon = \pm 0.25$\\
+											
+					  \item[c)]	Bekannt: Dauer Rotphase = $2 *$ Dauer Grünphase\\
+											N= 40 Tage\\
+											$\epsilon= \pm 0.2$\\
+											
+											Gesucht: P\\
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}}$\\
+											$P(A)= \frac{1}{3}$\\
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{\frac{1}{3}\cdot(1-\frac{1}{3})}{40\cdot(0.2)\textsuperscript{2}}=\frac{\frac{2}{9}}{40\cdot(0.04)}$\\
+											
+											$1-P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) < \frac{5}{36}$\\
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > \frac{31}{36}$\\
+											
+											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > 81.6\%$\\
+											
+					\end{itemize}
+		
+\item[4.1] 
+				
+				\begin{itemize}
+					\item[a)]$P\textsubscript{a}=P(A)=r\textsubscript{N}(A)=\frac{4}{100000}=0.0004\%$\\
+					
+					\item[b)]$P\textsubscript{b}=P(F\textsubscript{Sub})= \sum_{i=1}^4 P(F\textsubscript{Sub	}	|Typ\textsubscript{i})*P(Typ\textsubscript{i})$\\
+		
+		= $P(F\textsubscript{Sub}|A)*P(A)+P(F\textsubscript{Sub}|B)*P(B)+P(F\textsubscript{Sub}|C)*P(C)+P(F\textsubscript{Sub}|D)*P(D)\\
+		\\
+		= \frac{11}{100000}*\frac{1}{4}+\frac{0}{100000}*\frac{1}{4}+\frac{3}{100000}*\frac{1}{4}+\frac{5}{100000}*\frac{1}{4}\\
+		\\
+		=\frac{19}{400000}= 0.0000475= 0.00475\%$
+		\\
+		
+				\item[c)]$P\textsubscript{c}= P(F)= P(F|Add)*P(Add)+P(F|Sub)*P(Sub)+P(F|Mul)*P(Mul)+P(F|Div)*P(Div)\\
+	\\
+	= \frac{9+5+4+1}{400000}*\frac{1}{4}+\frac{11+0+5+3}{400000}*\frac{1}{4}+\frac{18}{400000}*\frac{1}{4}+\frac{3+4+7+586}{400000}*\frac{1}{4}\\
+	\\
+	=\frac{656}{1600000}= 0.00041= 0.041\%$\\
+	\newpage				
+					
+				\item[d)] Bayes' Form:\\
+									$P(D/F\textsubscript{Div})=\frac{P(F\textsubscript{Div}/D) \cdot P(D)}{P(F\textsubscript{Div}/A) \cdot P(A) + P(F\textsubscript{Div}/B) \cdot P(B) + P(F\textsubscript{Div}/C) \cdot P(C) + P(F\textsubscript{Div}/D)\cdot P(D)}$\\
+									
+									$=\frac{\frac{586}{100000}\cdot \frac{1}{4}}{\frac{3}{100000}\cdot \frac{1}{4} + \frac{4}{100000}\cdot \frac{1}{4} + \frac{7}{100000}\cdot \frac{1}{4} + \frac{586}{100000}\cdot \frac{1}{4}}$\\
+									
+									$=\frac{586}{600}= 97.67\%$\\
+									
+				\item[e)] zu zeigen: $P(F\textsubscript{Div}/D) = P(F\textsubscript{Div}/\bar{D})$\\
+				
+									$\Rightarrow \frac{586}{100000} \neq \frac{14}{300000}$\\
+									
+									$\Rightarrow$ stochastisch abhängig 
+				\end{itemize}
+
+\item[4.2] 
+				
+			\begin{itemize}
+				\item[a)] $\int f(x)=\frac{1}{3}ax\textsuperscript{3}+\frac{1}{2}bx\textsuperscript{2}+cx$\\
+									$f(x)=ax\textsuperscript{2}+bx+c$\\
+									$f'(x)=2ax+b$\\
+									
+									$f'(\frac{L}{2})=0$\\
+									$\Rightarrow 2a\cdot (\frac{L}{2})+b=0$\\
+									$\Leftrightarrow a\cdot L +b =0$\\
+									$\Leftrightarrow a\cdot L = -b$\\
+									$\Rightarrow \boldsymbol{b= -a\cdot L}$\\
+									
+									$f(0)=f(L)=c=2\cdot f(\frac{L}{2})$\\
+									$c= 2\cdot (a\cdot (\frac{L}{2})\textsuperscript{2}+ b\cdot \frac{L}{2}+c)$\\
+									$c= 2\cdot (a\cdot \frac{L\textsuperscript{2}}{4}+ b\cdot \frac{L}{2}+c)$\\
+									$c= 2\cdot (a\cdot \frac{L\textsuperscript{2}}{4}- a \cdot \frac{L\textsuperscript{2}}{2}+c)$\\
+									$c= 2\cdot \frac{aL\textsuperscript{2}}{4}- 2 \cdot \frac{aL\textsuperscript{2}}{2}+2c)$\\
+									$-c=\frac{aL\textsuperscript{2}}{2}-2\cdot \frac{aL\textsuperscript{2}}{2}= -	\frac{aL\textsuperscript{2}}{2}$\\
+										
+									$\boldsymbol{c=\frac{aL\textsuperscript{2}}{2}}$\\
+									
+									$\int_0^L f(x)= \left[\frac{1}{3}ax\textsuperscript{3}+\frac{1}{2}(-aL)x\textsuperscript{2}+a\cdot \frac{L\textsuperscript{2}}{2}x\right]$\\
+									
+									$=\frac{1}{3}aL\textsuperscript{3} + \frac{1}{2}(-a)L\textsuperscript{3} + a\cdot \frac{L\textsuperscript{3}}{2}$\\
+									
+									$=\frac{1}{3}aL\textsuperscript{3}$\\
+									
+									$=\frac{1}{3}aL\textsuperscript{3} \stackrel{!}{=} 1$\\
+									
+									$\Leftrightarrow al\textsuperscript{3}=3$\\
+									
+									$\Rightarrow \boldsymbol{a=\frac{3}{L\textsuperscript{3}}}$\\
+									
+									eingesetzt in b:
+									$b=-(\frac{3}{L\textsuperscript{3}})\cdot L = \frac{-3}{L\textsuperscript{2}}$\\
+									
+									eingesetzt in c:
+									$c=\frac{3}{L\textsuperscript{3}}\cdot \frac{L\textsuperscript{2}}{2}=\frac{3}{2L}$\\
+									damit ergibt sich $f(x)=\frac{3}{L\textsuperscript{3}} \cdot x\textsuperscript{2}- \frac{3}{L\textsuperscript{2}} \cdot x + \frac{3}{2L}$\\
+									
+				\item[b)] $\int_0^\frac{L}{4} \frac{3}{L\textsuperscript{3}} \cdot x\textsuperscript{2}- \frac{3}{L\textsuperscript{2}} \cdot x + \frac{3}{2L}$\\
+				
+									$=[\frac{x\textsuperscript{3}}{L\textsuperscript{3}}-\frac{3x\textsuperscript{2}}{2L\textsuperscript{2}}+\frac{3x}{2L}]$\\
+									
+									$=\frac{\frac{L}{4}\textsuperscript{3}}{L\textsuperscript{3}} - \frac{3\frac{L}{4}\textsuperscript{2}}{2L\textsuperscript{2}} + \frac{3\frac{L}{4}}{2L} - 0$\\
+									
+									$=\frac{L\textsuperscript{3}}{64L\textsuperscript{3}} - \frac{3L\textsuperscript{2}}{32L\textsuperscript{2}} + \frac{3L}{8L}$\\
+									
+									$=\frac{1}{64} - \frac{3}{32} + \frac{5}{8}$\\
+									
+									$=0.2968$\\
+									
+									wegen Symmetrie ist:
+						1,2,3			
+									$\int_\frac{3L}{4}^L f(x)dx = \int_0^\frac{L}{4} = 0.2968$\\
+									
+									$\int_\frac{3L}{4}^L f(x)dx + \int_0^\frac{L}{4} = 0.59375$\\
+									
+									$P(\text{innen})= 1-0.59375 = 0.40625$\\
+									
+									$\frac{P(\text{innen})}{P(\text{außen})}= 1.461$
+		\end{itemize}
+
+				
+\item[5.1] $A=\left\{1,2,3\right\}, B=\left\{2,4,6\right\}$\\
+
+						$P(A)=\frac{1}{2}, P(B)=\frac{1}{2}$\\
+						
+						$P(A\cap B)= \frac{1}{6}, da P(A\cap B)=\left\{2\right)$\\
+						
+						$P(A)\cdot P(B)= \frac{1}{4} \neq P(A\cap B)$\\
+						
+						stochastisch abhängig und nicht disjunkt!\\
+						
+\item[5.2] 
+		\begin{itemize}
+			\item[a)] $P\textsubscript{a}= {{10}\choose{0}} \cdot 0.1\textsuperscript{0} \cdot 0.9\textsuperscript{10} + {{10}\choose{1}} \cdot 0.1\textsuperscript{1}\cdot 0.9\textsuperscript{9} + {{10}\choose{2}} \cdot 0.1\textsuperscript{2}\cdot 0.9\textsuperscript{8} = 0.9298 = 92.98\%$\\
+			
+			\item[b)] $P\textsubscript{b}= {{10}\choose{10}}\cdot 0.1\textsuperscript{10} \cdot 0.9\textsuperscript{0}= 10\textsuperscript{-10}$\\
+			
+		\end{itemize}
+		
+\item[6.1] 
+		\begin{itemize}
+			\item[a)] $P\textsubscript{a}= 1-P\textsubscript{20,0}= 1-{{20}\choose{0}} \cdot 0.01\textsuperscript{0} \cdot 0.99\textsuperscript{20}= 0.1821= 18.21\%$\\
+			
+			\item[b)]	$P\textsubscript{b}= 1-P\textsubscript{n, 0}= 1-{{n}\choose{0}} \cdot 0.01\textsuperscript{0} \cdot 0.99\textsuperscript{n} > 0.5$\\
+			$\Leftrightarrow (0.99)\textsuperscript{n} < 0.5$\\
+			$\Leftrightarrow e\textsuperscript{nln(0.99)} < 0.5$\\
+			$\Leftrightarrow n \cdot \ln(0.99) < \ln(0.5)$\\
+			$\Leftrightarrow n > 68.97$\\
+			$\Leftrightarrow n= 69$\\
+			
+			\item[c)] gesucht: 3 von 5 defekt\\
+			
+								$DDD\bar{D}\bar{D}=\frac{3}{20} \cdot \frac{2}{19} \cdot \frac{1}{18} \cdot \frac{17}{17} \cdot \frac{16}{16}= \frac{1}{1140}$\\
+								
+								5 über 3 mögliche Anordnungen: ${{5}\choose{3}}=10$\\
+								
+								$P\textsubscript{c}= 10 \cdot \frac{1}{1140}= 8.77\cdot 10\textsuperscript{-3}$ \\
+								
+			
+			\item[d)] $P\textsubscript{d}=$ PC ist funktionsfähig, d.h. 10 Bauteile müssen funktionsfähig sein\\
+								
+								$P\textsubscript{10,10}= {{10}\choose{10}}\cdot 0.99\textsuperscript{10} \cdot 0.01\textsuperscript{0}= 0.9044$\\
+								
+			\item[e)] $P\textsubscript{e}= P(x>1)/P(x>0)= \frac{P((x>1)\cap(x>0))}{P(x>0)}$\\
+								
+								$=\frac{P(x>1)}{P(x>0)}= \frac{1-P(x\leq 1)}{1-P(x=0)}$\\
+								
+								$=\frac{1-P\textsubscript{d}-P\textsubscript{10,9}}{1-P\textsubscript{d}}$\\
+								
+								$=\frac{1-0.9044-{{10}\choose{9}}\cdot 0.99\textsuperscript{9} \cdot 0.01\textsuperscript{1}}{1-0.9044}$\\
+								
+								$=0.0444$\\
+								
+			\item[f)] weniger als 2 defekt, 0 defekt + 1 defekt\\
+							
+								$P\textsubscript{f}= {{30}\choose{0}} \cdot 0.0956\textsuperscript{0} \cdot 0.9044\textsuperscript{30} + {{30}\choose{1}} \cdot 0.0956\textsuperscript{1} \cdot 0.9044\textsuperscript{29}$\\
+								$= 0.2047$\\
+		\end{itemize}
+		
+\item[7.1]
+		\begin{itemize}
+			\item[a)] P(Bit falsch empfangen)$= 0.25$\\
+								
+								$P\textsubscript{a}= {{8}\choose{x}}\cdot 0.25\textsuperscript{x}\cdot 0.75\textsuperscript{8-x}$\\
+								
+								\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+									x & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8	\\
+									\midrule
+									P\textsubscript{8,x} & 0.1 & 0.27 & 0.31 & 0.21 & 0.087 & 0.023 & 0.0038 & 0.00037 & 0.000015\\
+								\end{tabular}\\
+								
+			\item[b)] $F\textsubscript{y}(0)= P(X=0)= 0.1$\\
+			
+								$F\textsubscript{y}(1)= P(X=0) + P(X=1)= 0.37 $\\
+								
+								$F\textsubscript{y}(2)= 0.37 + P(X\geq 2)= 1$\\
+			
+			\item[c)] $P(X>1)= 1-(P(X=0)+P(X=1))= 0.63$\\
+								$P(X>2)= 0.63-P(X=2)= 0.32$\\
+								$P(X>3)= 0.32-P(X=3)= 0.11$\\
+								$P(X>4)= 0.11-P(X=4)= 0.023$\\
+								$\rightarrow$ HD muss 5 sein.
+		\end{itemize}
+		
+\item[8.1]
+		\begin{itemize}
+			\item[a)] $f\textsubscript{uR}(u)= \begin{cases}
+																						\frac{1}{20V} & -5\leq U\textsubscript{R} \leq 15V\\
+																						0 & \text{sonst}
+																					\end{cases}$
+																					
+			\item[b)] $f\textsubscript{p}(p)= \begin{cases}
+																						0 & p < 0W \\
+																						\frac{\sqrt{50 \Omega}}{20V \cdot \sqrt{p}} & 0 \leq p < 0.5W\\
+																						\frac{\sqrt{50 \Omega}}{40V \cdot \sqrt{p}} & 0.5W \leq p < 4.5W\\
+																						0 & p\geq 4.5W
+																					\end{cases}$\\
+																					
+			\item[c)] $f\textsubscript{p}(p)= \begin{cases}
+																						0 & p < 0 \\
+																						\frac{1}{4}\delta(p) & p=0\\
+																						\frac{\sqrt{50 \Omega}}{40V \cdot \sqrt{p}} & 0<p<4.5W\\
+																						0 & p\geq 4.5W
+																					\end{cases}$\\
+		\end{itemize}
+
+
+\item[9.1]
+		\begin{itemize}
+			\item[a)] $\int_{-\infty}^{\infty} f(x)dx = 1$\\
+			
+								$\int_0^{100} c\cdot sin(\frac{\pi}{100}x)dx =1$\\
+								$=[-c \cdot \frac{100}{\pi}\cdot cos(\frac{\pi}{100}x)]$\\
+								$=-c\cdot \frac{100}{\pi}[-1-1]$\\
+								$\Rightarrow c=\frac{\pi}{200}$\\
+								
+								$f(x)=\begin{cases}
+												\frac{\pi}{200}\cdot sin(\frac{\pi}{100}x) & 0\leq x \leq 100\\
+												0 & sonst
+											\end{cases}$\\
+			
+			\item[b)] partielle Itegration oder mit geometrischer Überlegung\\
+			
+								$\int_0^{100} x\cdot f\textsubscript{x}(x)dx$\\
+								$\int_0^{100} x \cdot \frac{\pi}{200}\cdot sin(\frac{\pi}{100}x)dx$\\
+								$=[-\frac{100}{\pi}\cdot cos(\frac{\pi}{100}x)\cdot x \cdot\frac{\pi}{200}] - \int_0^{100} \frac{\pi}{200} \cdot (\frac{-100}{\pi})\cdot cos(\frac{\pi}{100}x)dx$\\
+								$=-\frac{100}{\pi}\cdot (-1) \cdot \frac{\pi}{2} - \frac{-100}{\pi} \cdot 1 - \int_0^{100} \frac{\pi}{200} \cdot (\frac{-100}{\pi})\cdot cos(\frac{\pi}{100}x)dx$\\
+								$=\frac{100}{\pi}\cdot \frac{\pi}{2} + 0 - \int_0^{100} \frac{\pi}{200} \cdot (\frac{-100}{\pi})\cdot cos(\frac{\pi}{100}x)dx$\\
+								$=50- \int_0^{100} (-\frac{1}{2}) \cdot cos(\frac{\pi}{100}x)dx$\\
+								$=50+\frac{1}{2} \int_0^{100} cos(\frac{\pi}{100}x)dx$\\
+								$=50+\frac{1}{2}\cdot [\frac{100}{\pi} \cdot sin(\frac{\pi}{100}x)] $\\
+								$=50+\frac{1}{2}\cdot (\frac{100}{\pi}\cdot 0 - \frac{100}{\pi}\cdot 0) = 50$\\
+								
+			\item[c)] $\sigma \textsubscript{x}\textsuperscript{2} = E(x\textsuperscript{2})-\mu\textsubscript{x} \textsuperscript{2})$\\
+								$=\int_{-\infty}^{\infty} x\textsuperscript{2} f\textsubscript{x}(x) - \mu\textsubscript{x} \textsuperscript{2}$\\
+								$=\int_0^{100} x\textsuperscript{2} \frac{\pi}{200}\cdot sin(\frac{\pi}{100}x)dx -\mu\textsubscript{x} \textsuperscript{2}$\\
+								$=\frac{\pi}{200} [\frac{2x}{\frac{\pi\textsuperscript{2}}{100\textsuperscript{2}}} \cdot sin(\frac{\pi}{100}x) - (\frac{x\textsuperscript{2}}{\frac{\pi}{100}} - \frac{2}{\frac{\pi\textsuperscript{3}}{100\textsuperscript{3}}})\cdot cos(\frac{\pi}{100}x)]$\\
+								$=\frac{\pi}{200} ((\frac{100\cdot 100\textsuperscript{2}}{\pi}-\frac{2\cdot 100\textsuperscript{3}}{\pi\textsuperscript{3}})- \frac{2\cdot 100\textsuperscript{3}}{\pi\textsuperscript{3}}) - 50\textsuperscript{2}$\\
+								$=2973,58 - 2500 = 473.58$\\
+								$\sigma\textsubscript{x}= 21.76$\\
+		\end{itemize}
+
+\newpage		
+\item[10.1] 
+		\begin{itemize}
+			\item[a)] $p=\frac{1}{N}, n=N$\\
+			
+								P(alle fehlerfrei)= P(keine fehlerhaft)\\
+								
+								$P\textsubscript{5a}= \binom{N}{0} \cdot p\textsuperscript{0} \cdot (1-p)\textsuperscript{N}$\\
+								$=(1-p)\textsuperscript{N} = (1-\frac{1}{N})\textsuperscript{N}$\\
+			
+			\item[b)] Näherung für $P\textsubscript{5a}$ mittels Poisson:\\
+								
+								Ges: $\left|\widetilde{P\textsubscript{5a}}-P\textsubscript{5a}\right| < 0.0179$\\
+								
+								$\widetilde{P\textsubscript{5a}} = \frac{\lambda\textsuperscript{k}}{k!} \cdot e^{-\lambda}$\\ 			
+								$\lambda= n\cdot p$\\
+								$k=0, n=N, p=\frac{1}{N}$\\
+								$\rightarrow \frac{n\cdot p\textsuperscript{k}}{k!} \cdot e^{-np}$\\
+								$= \frac{1\textsuperscript{0}}{1} \cdot e^{-1}$\\
+								$=0.368$\\
+								
+								eingesetzt für $\widetilde{P\textsubscript{5a}}:$\\
+								
+								$\left|0.368-P\textsubscript{5a}\right| \stackrel{!}{<} 0.0179$\\
+								\begin{itemize}
+									\item[1:] $P_{5a} < 0.3859 \;$ \textit{ungünstig, siehe Grafik}
+									\item[2:] $P_{5a} < -0.3501 \;$ \textit{da aber $P_{5a}$ betragsmäßig ist gilt:}\\
+														$P_{5a} > 0.3501$ \textit{hier in Grafik ablesbar}
+								\end{itemize}
+								
+								
+								laut Grafik ergibt sich dann für $N\textsubscript{min}= 11$\\
+										
+			\item[c)] Binomialverteilung:\\ 
+								$\sigma \textsubscript{x}\textsuperscript{2}= np(1-p)$\\
+								$\rightarrow \sigma \textsubscript{x}= \sqrt{\frac{1}{N}N(1-\frac{1}{N})} = \sqrt{1-\frac{1}{N}}$\\
+								\\
+								Poissonverteilung:\\
+								$\sigma \textsubscript{x}\textsuperscript{2}= \lambda$\\
+								$\rightarrow \sigma \textsubscript{x}= \sqrt{\lambda} = \sqrt{np} = 1$\\
+		\end{itemize}
+	
+
+\item[11.1] 
+	\begin{itemize}
+		\item[a)]	$P_a= P($Widerstand außerhalb der Toleranz$)$\\
+							$=P(R'<196\Omega) + P(R'>204\Omega)$\\
+							$R'= \sigma R + \mu = 2\Omega R + 202\Omega$\\
+						
+							$P_a= P(2\Omega R + 202\Omega < 196\Omega) + P(2\Omega R + 202\Omega > 204\Omega)$\\
+							$=P(R<3) + P(R>1)$\\
+							$=F(-3) + 1-F(1)$\\
+							$=1-\phi(-(-3))+1-\phi (1)$\\
+							$=2-\phi (3) -\phi(1)$\\
+							$=2-0.9987-0.84=0.1613$ (Tabelle)\\
+\newpage
+		\item[b)] $\mu_R=200\Omega$ bei $P_a= 10\%$\\
+							$R''=\sigma_b R+200\Omega$\\
+							
+							$P(R''< 196\Omega) + P(R'' > 204\Omega) \stackrel{!}{=}0.1$\\
+							$P(\sigma_b R +200\Omega <196\Omega) + P(\sigma_b +200\Omega > 204\Omega) =0.1$\\
+							$P(R< -\frac{4\Omega}{\sigma_b}) + P(R> -\frac{4\Omega}{\sigma_b})=0.1$\\
+							$\Rightarrow 1-\phi (\frac{4\Omega}{\sigma_b}) + 1 -\phi (\frac{4\Omega}{\sigma_b})=0.1$\\
+							$\Rightarrow \phi (\frac{4\Omega}{\sigma_b}) =0.95$\\
+							$\Rightarrow (\frac{4\Omega}{\sigma_b})=1.645$\\
+							$\sigma_b = 2.432$\\
+							
+	\end{itemize}
+	
+\item[11.2] $f_x(x)$ Gauß\\
+						$\mu_x =1V$\\
+						$\sigma_x\textsuperscript{2}= 0.25 V\textsuperscript{2}$\\
+						
+						$Y=g(X)=2X + 1.5V$\\
+						$\Rightarrow X=\frac{1}{2} (y-1.5V)$\\
+						$g'(X)=2$\\
+						
+						$f_y(y)= \frac{f_x (\frac{1}{2}(y-1.5V))}{2}$\\
+						
+						Gauß: $f_x(x)= \frac{1}{\sigma_x \sqrt{2\pi}} \cdot e^{\frac{-(x+\mu_x)\textsuperscript{2}}{2\sigma_x \textsuperscript{2}}}$\\
+						in $f_y(y)$ eingesetzt: $\frac{1}{2} \cdot \frac{1}{\sqrt{0.25V\textsuperscript{2}}\sqrt{2\pi}} \cdot e^{\frac{-((\frac{1}{2}(y-1.5V))-1V) \textsuperscript{2}}{0.5V\textsuperscript{2}}}$\\
+						$=\frac{1}{1V \sqrt{2\pi}} \cdot e^-\frac{1}{4}{\frac{(y-\frac{7}{2}V)\textsuperscript{2}}{0.5V\textsuperscript{2}}}$\\
+						$=\frac{1}{1V \sqrt{2\pi}} \cdot e^-{\frac{(y-\frac{7}{2}V)\textsuperscript{2}}{2V\textsuperscript{2}}}$\\
+						$\Rightarrow \mu_y= \frac{7}{2}V$ und $\sigma_y= 1V$\\
+						
+\item[12.1] System S funktionsfähig\\
+						$(K_1 \cup K_2) \cap K_3$\\
+						
+						Gesucht: $F_T(t)$\\
+						
+						$\rightarrow F_T(t)= P(T\leq t)$ laut Aufgabenstellung\\
+						$=1-(T>t)$\\
+						$=1-[P((T_1 > t) \cup (T_2 > t))\cap P(T_3 > t)]$\\
+						$=1-[P(T_1 > t) + P(T_2 > t) - P(T_1 > 1) \cdot P(T_2 > t)] \cdot P(T_3 > t)$\\
+						
+						$P(T_i > t)= e^{-\lambda t}$\\
+						$F_T(t)= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-\lambda_1 t} \cdot e^{-\lambda_2 t}] \cdot e^{-\lambda_3 t}$\\
+						$= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-(\lambda_1 +\lambda_2)t}] \cdot e^{-\lambda_3 t}$\\
+						
+
+
+\newpage
+
+
+\end{description}
+
+%\bibliographystyle{plain}
+%\bibliography{<path to your bibliography>
+
+
+\end{document}
