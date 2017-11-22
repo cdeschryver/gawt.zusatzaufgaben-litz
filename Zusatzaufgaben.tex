@@ -166,67 +166,71 @@
          $P(C)= \frac{11}{36}$\\
          $P(D)= 1$\\
 
-\item[3.2] 
 
-         \begin{itemize}
-            \item[a)] Fehlerwahrscheinlichkeit $\leq 10\%$\\
-											\\
-											$v=\frac{\text{Dauer Grünphase}}{\text{Dauer Ampelzyklus}}$ mit $\epsilon= \pm 0.1$\\
-											\\
-											gesucht: $N\textsubscript{min}$\\
-											\\
-											\textbf{Hinweis: Lit\_15a (3.7)}\\
-											\\
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}} \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
+\item[3.2] 
+\begin{itemize}
+	\item[a)] Fehlerwahrscheinlichkeit $\leq 10\%$\\
+		\\
+		$v=\frac{\text{Dauer Grünphase}}{\text{Dauer Ampelzyklus}}$ mit $\epsilon= \pm 0.1$\\
+		\\
+		gesucht: $N\textsubscript{min}$\\
+		\\
+		\textbf{Hinweis:} Wir wissen nach Lit\_15a (3.7):\\
+		\\
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}} \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
+		\\
+		Es soll gelten:
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) \leq 0.1$ \\
+		\\
+		Dies schätzen wir über die Schranke ab:\\
+		\\
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) \leq \frac{1}{4\cdot N\cdot (0.1)\textsuperscript{2}} \leq 0.1$\\		\\
+		$\frac{1}{N} \leq 0.004$\\
+		\\
+		$N \geq 250$\\
+		\\
+		Ab 250 Tagen ist die Aussage also möglich.\\
 											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|>\epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}}$\\
-											
-											$0.1 \leq \frac{1}{4\cdot N\cdot (0.1)\textsuperscript{2}}$ \\
-											
-											$N\textsubscript{min} \leq \frac{1}{4\cdot 0.1\cdot (0.1)\textsuperscript{2}}$										\\
-											
-											$N\textsubscript{min} \leq 250$\\
-											
-											Ab 250 Tagen ist die Aussage möglich!\\
-											
-            \item[b)] Gegeben: N=40, Wahrscheinlichkeit: $90\%$ \\
-					
-											Gesucht: $\epsilon$\\
-											
-											Anwendung Bernoulli-Ungleichung:\\
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)= 90\%$\\
-											
-											Problem: nicht direkt anwendbar!
-											über Gegenereignis:
-											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)=1-P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=90\%$\\
-											
-											$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=1-90\% = 0.1$\\
-											
-											$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}} = 0.1$\\
-											
-											$\Leftrightarrow \epsilon\textsuperscript{2}= \frac{10}{4N}= \frac{10}{4\cdot40}=\frac{1}{16}$\\
-											
-											$\epsilon = \pm 0.25$\\
-											
-					  \item[c)]	Bekannt: Dauer Rotphase = $2 *$ Dauer Grünphase\\
-											N= 40 Tage\\
-											$\epsilon= \pm 0.2$\\
-											
-											Gesucht: P\\
-											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}}$\\
-											$P(A)= \frac{1}{3}$\\
-											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{\frac{1}{3}\cdot(1-\frac{1}{3})}{40\cdot(0.2)\textsuperscript{2}}=\frac{\frac{2}{9}}{40\cdot(0.04)}$\\
-											
-											$1-P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) < \frac{5}{36}$\\
-											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > \frac{31}{36}$\\
-											
-											$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > 81.6\%$\\
-											
-					\end{itemize}
+	\item[b)] Gegeben: N=40, Wahrscheinlichkeit: $90\%$ \\
+
+		Gesucht: $\epsilon$\\
+		
+		Anwendung Bernoulli-Ungleichung:\\
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)= 90\%$\\
+		
+		Problem: nicht direkt anwendbar!
+		über Gegenereignis:
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon)=1-P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=90\%$\\
+		
+		$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon)=1-90\% = 0.1$\\
+		
+		$\Leftrightarrow$ $P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) \leq \frac{1}{4N\epsilon\textsuperscript{2}} = 0.1$\\
+		
+		$\Leftrightarrow \epsilon\textsuperscript{2}= \frac{10}{4N}= \frac{10}{4\cdot40}=\frac{1}{16}$\\
+		
+		$\epsilon = \pm 0.25$\\
+		
+  \item[c)]	Bekannt: Dauer Rotphase = $2 *$ Dauer Grünphase\\
+		N= 40 Tage\\
+		$\epsilon= \pm 0.2$\\
+		
+		Gesucht: P\\
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{P(A)\cdot(1-P(A))}{N\epsilon\textsuperscript{2}}$\\
+		$P(A)= \frac{1}{3}$\\
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|> \epsilon) < \frac{\frac{1}{3}\cdot(1-\frac{1}{3})}{40\cdot(0.2)\textsuperscript{2}}=\frac{\frac{2}{9}}{40\cdot(0.04)}$\\
+		
+		$1-P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) < \frac{5}{36}$\\
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > \frac{31}{36}$\\
+		
+		$P(\left|r\textsubscript{N}(A)-P(A)\right|\leq \epsilon) > 81.6\%$\\
+		
+\end{itemize}
 		
 \item[4.1] 
 				
