@@ -559,18 +559,33 @@
 						$\Rightarrow \mu_y= \frac{7}{2}V$ und $\sigma_y= 1V$\\
 						
 \item[12.1] System S funktionsfähig\\
+						%Quelle für Zuverlässigkeitsfunktion: Matthias Strunz Instandhaltung - Grundlagen – Strategien – Werkstätten, Springer 							Vieweg 
+						%Link: https://link.springer.com/content/pdf/10.1007%2F978-3-642-27390-2.pdf
 						$(K_1 \cup K_2) \cap K_3$\\
 						
-						Gesucht: $F_T(t)$\\
+						Gesucht: $F_T(t)$ Verteilungsfunktion der Lebensdauer T des Gesamtsystems\\
+						Bekannt: Für Exponentialverteilung gilt: Die Zuverlässigkeitsfunktion $R(t)$ ist definiert mit $R(t)=1-F_T(t)=e^{-\lambda t}$\\
+						Bei Parallelschaltungen gilt: $R_{ges}(t)=1-\prod\limits_{i=1}^{n}[1-R_i(t)]$\\
+						(Zuverlässigkeit des Systems ist gegeben über die Gegenwahrscheinlichkeit des Ereignisses, dass alle Komponenten 		                        gleichzeitig ausfallen)\\						
+						Bei Serienschaltungen gilt: $R_{ges}(t)=\prod\limits_{i=1}^{n}R_i(t)$\\
+						(Zuverlässigkeit des Systems ist gegeben über die Wahrscheinlichkeit des Ereignisses, dass eine Komponente ausfällt)\\
+						\\
+						$\rightarrow F_T(t)= 1 - R_{ges}(t)$ \\
+						$R_{ges}(t)=R_{12}(t)\cdot R_3(t)$ (Serienschaltung)\\
+						$R_{12}(t)=1-(1-R_1(t))\cdot(1-R_2(t))$ (Parallelschaltung)\\
+						$R_i(t)=e^{-\lambda_i t}$\\
+						$R_{ges}(t)=[1-(1-e^{-\lambda_1 t})\cdot(1-e^{-\lambda_2 t})]e^{-\lambda_3 t}$\\
+						$F_T(t)= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-\lambda_1 t} \cdot e^{-\lambda_2 t}] \cdot e^{-\lambda_3 t}$\\
 						
-						$\rightarrow F_T(t)= P(T\leq t)$ laut Aufgabenstellung\\
-						$=1-(T>t)$\\
-						$=1-[P((T_1 > t) \cup (T_2 > t))\cap P(T_3 > t)]$\\
-						$=1-[P(T_1 > t) + P(T_2 > t) - P(T_1 > 1) \cdot P(T_2 > t)] \cdot P(T_3 > t)$\\
-						
+						Alternativ:\\
+						$F_T(t)=1-P(T>t)$\\
+						$F_T(t)=1-[P((T_1 > t) \cup (T_2 > t))\cap P(T_3 > t)]$\\
+						(Entspricht dem Gegenereignis zu K1 oder K2 fällt nicht aus und K3 fällt nicht aus)\\
+						$F_T(t)=1-[P(T_1 > t) + P(T_2 > t) - P(T_1 > 1) \cdot P(T_2 > t)] \cdot P(T_3 > t)$\\
+						(Vereinigungsmenge = Menge1 + Menge2 - Schnittmenge)\\
 						$P(T_i > t)= e^{-\lambda t}$\\
 						$F_T(t)= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-\lambda_1 t} \cdot e^{-\lambda_2 t}] \cdot e^{-\lambda_3 t}$\\
-						$= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-(\lambda_1 +\lambda_2)t}] \cdot e^{-\lambda_3 t}$\\
+						$F_T(t)= 1-[e^{-\lambda_1 t} + e^{-\lambda_2 t} -e^{-(\lambda_1 +\lambda_2)t}] \cdot e^{-\lambda_3 t}$\\
 						
 
 
